@@ -1,2 +1,2 @@
-# webgis-covid19
-Webgis inventarisasi penyebaran COVID-19
+# WEBGIS-covid19
+Website inventarisasi penyebaran COVID-19
