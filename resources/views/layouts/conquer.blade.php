@@ -111,10 +111,10 @@ License: You must have a valid license purchased only from themeforest(the above
             @if(Auth::user())
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
-                <input type="submit" class="btn btn-danger btn-xs" value="Logout">
+                <input type="submit" class="btn btn-danger btn-xs btn-block" value="Logout">
               </form>
             @else
-              <a href="/home" class="btn btn-info btn-xs">Login</a>
+              <a href="/home" class="btn btn-info btn-xs btn-block">Login</a>
             @endif
           </li>
         </ul>

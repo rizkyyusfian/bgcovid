@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('You are logged in!') }}<br>
+                    <a href="/kabupaten">Continue</a>
                 </div>
             </div>
         </div>

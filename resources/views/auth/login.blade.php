@@ -70,4 +70,22 @@
         </div>
     </div>
 </div>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Daftar User</div>
+                <div class="card-body">
+                    <p>
+                        <b>User 1</b><br>
+                        E-Mail  : yusfian@gmail.com<br>
+                        Password: yusfian1<br>
+                        Role    : admin
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
