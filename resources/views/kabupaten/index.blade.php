@@ -20,9 +20,11 @@ KABUPATEN
     </ul>
 
     <div class="page-toolbar">
+    @can('modify-permission')
       <a href="{{ url('kabupaten/create') }}" class="btn btn-success btn-sm">Add</a>
       <a href="" class="btn btn-info btn-sm">Edit (?)</a>
       <a href="" class="btn btn-danger btn-sm">Delete (?)</a>
+    @endcan
     </div>
 </div>
 

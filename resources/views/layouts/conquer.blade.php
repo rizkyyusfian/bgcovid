@@ -96,7 +96,7 @@ License: You must have a valid license purchased only from themeforest(the above
       <!-- BEGIN USER LOGIN DROPDOWN -->
       <li class="dropdown user">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-        <img alt="" src="assets/img/avatar3_small.jpg"/>
+        <img alt="" src=""/>
         <span class="username username-hide-on-mobile">
           @if(Auth::user())
             {{ Auth::user()->name }}
@@ -108,34 +108,14 @@ License: You must have a valid license purchased only from themeforest(the above
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a href="extra_profile.html"><i class="fa fa-user"></i> My Profile</a>
-          </li>
-          <li>
-            <a href="page_calendar.html"><i class="fa fa-calendar"></i> My Calendar</a>
-          </li>
-          <li>
-            <a href="page_inbox.html"><i class="fa fa-envelope"></i> My Inbox <span class="badge badge-danger">
-            3 </span>
-            </a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-tasks"></i> My Tasks <span class="badge badge-success">
-            7 </span>
-            </a>
-          </li>
-          <li class="divider">
-          </li>
-          <li>
             @if(Auth::user())
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
-                <i class="fa fa-key"></i>
                 <input type="submit" class="btn btn-danger btn-xs" value="Logout">
-            </form>
+              </form>
             @else
               <a href="/home" class="btn btn-info btn-xs">Login</a>
             @endif
-            
           </li>
         </ul>
       </li>

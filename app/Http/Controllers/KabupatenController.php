@@ -26,6 +26,7 @@ class KabupatenController extends Controller
      */
     public function create()
     {
+        $this->authorize('modify-permission');
         $data=Kabupaten::all();
         return view("kabupaten.create", compact('data'));
     }
