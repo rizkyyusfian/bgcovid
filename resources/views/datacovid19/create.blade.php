@@ -121,9 +121,43 @@ DATA COVID-19
     "googleHybrid":googleHybrid
   };
 
+  //ICON
+  var IconSuspect = L.icon({
+    iconUrl: "{{ asset('icons_leaflet/health-medical.png') }}",
+    iconSize: [30, 40],
+    iconAnchor: [15, 40],
+  });
+  var IconPenderita = L.icon({
+    iconUrl: "{{ asset('icons_leaflet/toys-store.png') }}",
+    iconSize: [30, 40],
+    iconAnchor: [15, 40],
+  });
+
+  //TAMPILKAN DATA POINT MASTER_COVID19
   @foreach($data as $d)
-    var kab_id_{{ $d->id }}= L.marker([ {{ $d->y }} ,{{ $d->x }}]).bindPopup("TESSSS");
-    // kab_id_{{ $d->id }}.addTo(map);
+    var jenis = '{{$d->jenis}}';
+
+    //CREATE WKT POINT
+    var pasien_id_{{ $d->id }} = '{{ $d->geom }}';
+    var wkt = new Wkt.Wkt();
+    wkt.read(pasien_id_{{ $d->id }});
+
+    var point_pasien_id_{{ $d->id }}
+    if(jenis == 'suspect')
+    {
+      point_pasien_id_{{ $d->id }} = wkt.toObject({icon: IconSuspect});
+    } else if(jenis == 'penderita') {
+      point_pasien_id_{{ $d->id }} = wkt.toObject({icon: IconPenderita});
+    }
+    point_pasien_id_{{ $d->id }}.addTo(map);
+
+    //WKT POPUP ON CLICK
+    point_pasien_id_{{ $d->id }}.on('click', function (e) { 
+      var pop = L.popup();
+      pop.setLatLng(e.latlng);
+      pop.setContent("Jenis = {{$d->jenis}}");
+      map.openPopup(pop);
+    });
   @endforeach
 
   //DRAW CONTROL
@@ -190,8 +224,23 @@ DATA COVID-19
     drawnItems.addLayer(layer);
   });
 
+
+  //GEOJSON INDONESIA_KAB
+  //fungsi untuk warna (belum dibuat)
+  function pemilih(feature) {
+    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.2 };
+  }
+
+  //fungsi ppopup detail (masih salah)
+  function popupdetail(feature,layer) {
+    // @foreach($data as $d)
+    //   var namakab = {{ $d->nama_kab }};
+    // @endforeach
+    return layer.bindPopup("TES");
+  }
+
   //panggil geojson
-  var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}").addTo(map);
+  var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:pemilih,onEachFeature:popupdetail}).addTo(map);
 
   L.control.layers(baseMaps).addTo(map);
 </script>

@@ -64,12 +64,12 @@ var baseMaps = {
 
 //ICON
 var IconSuspect = L.icon({
-  iconUrl: 'icons_leaflet/health-medical.png',
+  iconUrl: "{{ asset('icons_leaflet/health-medical.png') }}",
   iconSize: [30, 40],
   iconAnchor: [15, 40],
 });
 var IconPenderita = L.icon({
-  iconUrl: 'icons_leaflet/toys-store.png',
+  iconUrl: "{{ asset('icons_leaflet/toys-store.png') }}",
   iconSize: [30, 40],
   iconAnchor: [15, 40],
 });
@@ -102,27 +102,24 @@ var IconPenderita = L.icon({
   });
 @endforeach
 
-  //GEOJSON INDONESIA_KAB
-  //fungsi untuk warna (belum dibuat)
-  function pemilih(feature) {
-    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
-  }
+//GEOJSON INDONESIA_KAB
+//fungsi untuk warna (belum dibuat)
+function pemilih(feature) {
+  return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
+}
 
-  //fungsi ppopup detail (masih salah)
-  function popupdetail(feature,layer) {
-    // @foreach($data as $d)
-    //   var namakab = {{ $d->nama_kab }};
-    // @endforeach
-    // return layer.bindPopup($namakab);
-  }
-
+//fungsi ppopup detail (masih salah)
+function popupdetail(feature,layer) {
+  // @foreach($data as $d)
+  //   var namakab = {{ $d->nama_kab }};
+  // @endforeach
+  return layer.bindPopup('TES');
+}
 
 
 //panggil geojson
 var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:pemilih,onEachFeature:popupdetail}).addTo(map);
 
-
 L.control.layers(baseMaps).addTo(map);
-
 </script>
 @endsection
