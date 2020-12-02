@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}<br>
-                    <a href="/kabupaten">Continue</a>
+                    <a href="/datacovid19">Continue</a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.conquer')
 @section('title')
-ADD DATA
+ADD DATA COVID-19
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@ ADD DATA
     </ul>
 </div>
 
-KABUPATEN
+DATA COVID-19
 <div class="row">
   <div class="col-md-8">
     <div id="map" style="height: 720px">
@@ -35,7 +35,8 @@ KABUPATEN
   </div>
   <div class="col-md-4">
     <!-- isi form -->
-    <form role="form" method="POST" action="" enctype="multipart/form-data">
+    <form role="form" method="POST" action="{{ url('datacovid19') }}" enctype="multipart/form-data">
+      @csrf
       <div class="form-body">
 
       <div class="form-group">

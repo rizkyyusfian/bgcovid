@@ -26,7 +26,7 @@ a:hover {
     <h1 class="w3-jumbo w3-animate-top">Data penyebaran Covid-19</h1>
 	  <hr class="w3-border-grey" style="margin:auto;width:40%">
 	  <div class="w3-large w3-center tes">
-		  <h2><a href="/kabupaten">LIHAT PENYEBARAN</a></h2>
+		  <h2><a href="/datacovid19">LIHAT PENYEBARAN</a></h2>
   	</div>
   </div>
   <div class="w3-display-bottommiddle w3-padding-large" style='text-align:center;'>

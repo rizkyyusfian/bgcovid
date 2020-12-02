@@ -1,6 +1,6 @@
 @extends('layouts.conquer')
 @section('title')
-KABUPATEN
+DATA COVID-19
 @endsection
 
 @section('content')
@@ -21,14 +21,22 @@ KABUPATEN
 
     <div class="page-toolbar">
     @can('modify-permission')
-      <a href="{{ url('kabupaten/create') }}" class="btn btn-success btn-sm">Add</a>
+      <a href="{{ url('datacovid19/create') }}" class="btn btn-success btn-sm">Add</a>
       <a href="" class="btn btn-info btn-sm">Edit (?)</a>
       <a href="" class="btn btn-danger btn-sm">Delete (?)</a>
     @endcan
     </div>
 </div>
 
-KABUPATEN
+@if (session('status'))
+  <div class="alert alert-success">{{ session('status') }}</div>
+@endif
+
+@if (session('error'))
+  <div class="note note-danger">{{ session('error') }}</div>
+@endif
+
+DATA COVID-19
 <div id="rumahpeta" style="background-color: red; height: 720px;">
     ini adalah rumah peta
   </div>
@@ -56,8 +64,20 @@ var baseMaps = {
 
 //TAMPILKAN DATA POINT MASTER_KABUPATEN
 @foreach($data as $d)
-  var kab_id_{{ $d->id }}= L.marker([ {{ $d->y }} ,{{ $d->x }}]).bindPopup('Propinsi = {{ $d->nama_prop }} <br>Kabupaten = {{ $d->nama_kab }}');
-  // kab_id_{{ $d->id }}.addTo(map);
+  //CREATE WKT POINT
+  var pasien_id_{{ $d->id }} = '{{ $d->geom }}';
+    var wkt = new Wkt.Wkt();
+    wkt.read(pasien_id_{{ $d->id }}); 
+    var point_pasien_id_{{ $d->id }} = wkt.toObject({});//.bindPopup("UBAYA WKT"); 
+    point_pasien_id_{{ $d->id }}.addTo(map);
+
+    //WKT POPUP ON CLICK
+    point_pasien_id_{{ $d->id }}.on('click', function (e) { 
+      var pop = L.popup();
+      pop.setLatLng(e.latlng);
+      pop.setContent("Jenis = {{$d->jenis}}");
+      map.openPopup(pop);
+    });
 @endforeach
 
   //GEOJSON INDONESIA_KAB

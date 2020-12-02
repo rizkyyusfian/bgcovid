@@ -67,7 +67,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- Draw Control -->
 <link rel="stylesheet" href="{{ asset('plugins_leaflet/markercluster/MarkerCluster.css') }}"/>
 <link rel="stylesheet" href="{{ asset('plugins_leaflet/markercluster/MarkerCluster.Default.css') }}"/>
-<script src="plugin/markercluster/leaflet.markercluster-src.js"></script>
+<script src="plugins_leaflet/markercluster/leaflet.markercluster-src.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 
@@ -161,30 +161,22 @@ License: You must have a valid license purchased only from themeforest(the above
         </li>
         <li >
           <a href="javascript:;">
-          <i class="icon-puzzle"></i>
+          <i class="fa fa-folder"></i>
           <span class="title">Master</span>
           <span class="arrow "></span>
           </a>
           <ul class="sub-menu">
             <li>
-              <a href="">
-              <i class="icon-anchor"></i>
-              Product</a>
+              <a href="/kabupaten">
+                <i class="fa fa-building"></i>
+                Kabupaten
+              </a>
             </li>
             <li>
-              <a href="">
-              <i class="icon-book-open"></i>
-              Category</a>
-            </li>
-            <li>
-              <a href="">
-              <i class="icon-pin"></i>
-              Supplier</a>
-            </li>
-            <li>
-              <a href="">
-              <i class="icon-vector"></i>
-              Transaction</a>
+              <a href="/datacovid19">
+                <i class="fa fa-bar-chart-o"></i>
+                DataCovid19
+              </a>
             </li>
       </ul>
       <!-- END SIDEBAR MENU -->

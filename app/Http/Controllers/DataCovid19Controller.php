@@ -15,8 +15,8 @@ class DataCovid19Controller extends Controller
      */
     public function index()
     {
-        $data=Kabupaten::all();
-        return view("kabupaten.index", compact('data'));
+        $data=DataCovid19::all();
+        return view("datacovid19.index", compact('data'));
     }
 
     /**
@@ -27,8 +27,8 @@ class DataCovid19Controller extends Controller
     public function create()
     {
         $this->authorize('modify-permission');
-        $data=Kabupaten::all();
-        return view("kabupaten.create", compact('data'));
+        $data=DataCovid19::all();
+        return view("datacovid19.create", compact('data'));
     }
 
     /**
@@ -39,7 +39,25 @@ class DataCovid19Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new DataCovid19();
+        $data->jenis = $request->get('jenis');
+        $data->nama = $request->get('name');
+        $data->ktp = $request->get('ktp');
+        $data->alamat = $request->get('alamat');
+        $data->keluhan_sakit = $request->get('keluhan');
+        $data->riwayat_perjalanan = $request->get('riwayat');
+        $data->geom = $request->get('geom');
+
+        //LOGO
+        $file=$request->file('foto');
+        $imgFolder = 'res/foto_covid/';
+        $imgFile=time()."_".$file->getClientOriginalName();
+        $file->move($imgFolder,$imgFile);
+        $data->foto=$imgFile;
+
+        $data->save();
+
+        return redirect()->route('datacovid19.index')->with('status', 'Data Berhasil Ditambahkan');
     }
 
     /**

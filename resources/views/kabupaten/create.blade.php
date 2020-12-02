@@ -1,6 +1,6 @@
 @extends('layouts.conquer')
 @section('title')
-ADD DATA
+ADD DATA KABUPATEN
 @endsection
 
 @section('content')
