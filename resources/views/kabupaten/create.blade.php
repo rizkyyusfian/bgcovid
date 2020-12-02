@@ -37,14 +37,44 @@ KABUPATEN
     <!-- isi form -->
     <form class="form" method="post" action="#">
       <div class="form-body">
-        <div class="form-group">
-          <label for="name">Nama</label>
-          <input type="text" class="form-control" id='name' name='name' placeholder="Type your name" required>
+
+      <div class="form-group">
+          <label for="jenis">Jenis COVID-19</label>
+          <select class="form-control" id="jenis" name="jenis">
+            <option value="suspect">Suspect</option>
+            <option value="penderita">Penderita</option>
+          </select>
         </div>
 
         <div class="form-group">
-          <label for="ket">Keterangan</label>
-          <input type="text" class="form-control" id="ket" name="ket" required>
+          <label for="name">Nama</label>
+          <input type="text" class="form-control" id='name' name='name' placeholder="isi nama" required>
+        </div>
+
+        <div class="form-group">
+          <label for="ktp">KTP</label>
+          <input type="text" class="form-control" id="ktp" name="ktp" placeholder="isi nomor ktp" required>
+        </div>
+
+        <div class="form-group">
+          <label for="alamat">Alamat</label>
+          <textarea class="form-control " rows="3" id="alamat" name="alamat" placeholder="isi alamat rumah" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Foto</label>
+          <input type="file" value="" name="foto" class="form-control" id="foto" placeholder="input foto" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" required>
+        </div>
+        <img id="output" src="" width="200px" height="200px">
+
+        <div class="form-group">
+          <label for="keluhan">Keluhan Sakit</label>
+          <input type="text" class="form-control" id="keluhan" name="keluhan" placeholder="isi keluhan sakit" required>
+        </div>
+
+        <div class="form-group">
+          <label for="riwayat">Riwayat Perjalanan</label>
+          <input type="text" class="form-control" id="riwayat" name="riwayat" placeholder="isi riwayat perjalanan" required>
         </div>
 
         <div class="form-group">
@@ -60,6 +90,7 @@ KABUPATEN
           <label for="geom">Geom</label>
           <textarea class="form-control " rows="3" id="geom" name="geom" placeholder="geom koordinat" readonly required></textarea>
         </div>
+        
       </div>
       <div class="form-actions">
         <button type="submit"  onclick="simpan_geom();" class="btn btn-success">Submit</button>
