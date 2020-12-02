@@ -58,18 +58,21 @@ var baseMaps = {
 @foreach($data as $d)
   var kab_id_{{ $d->id }}= L.marker([ {{ $d->y }} ,{{ $d->x }}]).bindPopup('Propinsi = {{ $d->nama_prop }} <br>Kabupaten = {{ $d->nama_kab }}');
   // kab_id_{{ $d->id }}.addTo(map);
+@endforeach
 
   //GEOJSON INDONESIA_KAB
   //fungsi untuk warna (belum dibuat)
   function pemilih(feature) {
-    return {weight:1, fillColor:"red",fillOpacity:0.5 };
+    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
   }
-  
-  //fungsi ppopup detail
+
+  //fungsi ppopup detail (masih salah)
   function popupdetail(feature,layer) {
-    return layer.bindPopup("tes");
+    // @foreach($data as $d)
+    //   var namakab = {{ $d->nama_kab }};
+    // @endforeach
+    // return layer.bindPopup($namakab);
   }
-@endforeach
 
 
 
