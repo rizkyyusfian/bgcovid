@@ -54,36 +54,27 @@ var baseMaps = {
   "googleHybrid":googleHybrid
 };
 
+//TAMPILKAN DATA POINT MASTER_KABUPATEN
 @foreach($data as $d)
   var kab_id_{{ $d->id }}= L.marker([ {{ $d->y }} ,{{ $d->x }}]).bindPopup('Propinsi = {{ $d->nama_prop }} <br>Kabupaten = {{ $d->nama_kab }}');
   // kab_id_{{ $d->id }}.addTo(map);
-@endforeach
 
-//GEOJSON
-function pemilih(feature) {
-  if(feature.properties.pemilih1 > feature.properties.pemilih2) 
-  {
-    return {weight:0, fillColor:"red",fillOpacity:0.5 };
-  } 
-  else if(feature.properties.pemilih1 < feature.properties.pemilih2) 
-  {
-    return {weight:0, fillColor:"orange",fillOpacity:0.5 };
-  }
-}
-
-function popupdetail(feature,layer) {
-  if(feature.properties.pemilih1 > feature.properties.pemilih2) 
-  {
-    return layer.bindPopup("Nama Provinsi : " + feature.properties.NAMA_PROP + "<br>Jumlah Pemilih 1 : " + feature.properties.pemilih1 + "<br>Jumlah Pemilih 2 : " + feature.properties.pemilih2);
-  } 
-  else if(feature.properties.pemilih1 < feature.properties.pemilih2) 
-  {
-    return layer.bindPopup("Nama Provinsi : " + feature.properties.NAMA_PROP + "<br>Jumlah Pemilih 1 : " + feature.properties.pemilih1 + "<br>Jumlah Pemilih 2 : " + feature.properties.pemilih2);
+  //GEOJSON INDONESIA_KAB
+  //fungsi untuk warna (belum dibuat)
+  function pemilih(feature) {
+    return {weight:1, fillColor:"red",fillOpacity:0.5 };
   }
   
-}
+  //fungsi ppopup detail
+  function popupdetail(feature,layer) {
+    return layer.bindPopup("tes");
+  }
+@endforeach
 
-var pilpres = L.geoJson.ajax('res_leaflet/indonesia_kab.geojson',{style:pemilih,onEachFeature:popupdetail}).addTo(map);
+
+
+//panggil geojson
+var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:pemilih,onEachFeature:popupdetail}).addTo(map);
 
 
 L.control.layers(baseMaps).addTo(map);
