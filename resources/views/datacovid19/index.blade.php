@@ -57,7 +57,7 @@ var baseMaps = {
 //TAMPILKAN DATA POINT MASTER_KABUPATEN
 @foreach($data as $d)
   var kab_id_{{ $d->id }}= L.marker([ {{ $d->y }} ,{{ $d->x }}]).bindPopup('Propinsi = {{ $d->nama_prop }} <br>Kabupaten = {{ $d->nama_kab }}');
-  kab_id_{{ $d->id }}.addTo(map);
+  // kab_id_{{ $d->id }}.addTo(map);
 @endforeach
 
   //GEOJSON INDONESIA_KAB
@@ -68,7 +68,10 @@ var baseMaps = {
 
   //fungsi ppopup detail (masih salah)
   function popupdetail(feature,layer) {
-    return layer.bindPopup('');
+    // @foreach($data as $d)
+    //   var namakab = {{ $d->nama_kab }};
+    // @endforeach
+    // return layer.bindPopup($namakab);
   }
 
 

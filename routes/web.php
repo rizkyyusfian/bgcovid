@@ -20,6 +20,8 @@ Route::get('/', function () {
 //ROUTE CONTROLLER
 Route::resource('/kabupaten', 'KabupatenController');
 
+Route::resource('/datacovid19', 'DataCovid19Controller');
+
 //ROUTE LAYOUT TEMPLATE
 Route::get('/layouts', function() {
     return view('layouts.conquer');
