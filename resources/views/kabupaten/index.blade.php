@@ -44,7 +44,6 @@ var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z=
 var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']});
 //add to div rumah peta  
 osm.addTo(map);
-// googleStreets.addTo(map);
 
 //pengaturan visibility dan choose option
 var baseMaps = {
