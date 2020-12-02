@@ -15,7 +15,7 @@ ADD DATA COVID-19
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="{{ url('kabupaten') }}">Peta Penyebaran</a>
+            <a href="{{ url('datacovid19') }}">Peta Penyebaran</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>

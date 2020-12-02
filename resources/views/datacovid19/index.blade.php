@@ -62,22 +62,44 @@ var baseMaps = {
   "googleHybrid":googleHybrid
 };
 
-//TAMPILKAN DATA POINT MASTER_KABUPATEN
+//ICON
+var IconSuspect = L.icon({
+  iconUrl: 'icons_leaflet/health-medical.png',
+  iconSize: [30, 40],
+  iconAnchor: [15, 40],
+});
+var IconPenderita = L.icon({
+  iconUrl: 'icons_leaflet/toys-store.png',
+  iconSize: [30, 40],
+  iconAnchor: [15, 40],
+});
+
+
+//TAMPILKAN DATA POINT MASTER_COVID19
 @foreach($data as $d)
+  var jenis = '{{$d->jenis}}';
+
   //CREATE WKT POINT
   var pasien_id_{{ $d->id }} = '{{ $d->geom }}';
-    var wkt = new Wkt.Wkt();
-    wkt.read(pasien_id_{{ $d->id }}); 
-    var point_pasien_id_{{ $d->id }} = wkt.toObject({});//.bindPopup("UBAYA WKT"); 
-    point_pasien_id_{{ $d->id }}.addTo(map);
+  var wkt = new Wkt.Wkt();
+  wkt.read(pasien_id_{{ $d->id }});
 
-    //WKT POPUP ON CLICK
-    point_pasien_id_{{ $d->id }}.on('click', function (e) { 
-      var pop = L.popup();
-      pop.setLatLng(e.latlng);
-      pop.setContent("Jenis = {{$d->jenis}}");
-      map.openPopup(pop);
-    });
+  var point_pasien_id_{{ $d->id }}
+  if(jenis == 'suspect')
+  {
+    point_pasien_id_{{ $d->id }} = wkt.toObject({icon: IconSuspect});
+  } else if(jenis == 'penderita') {
+    point_pasien_id_{{ $d->id }} = wkt.toObject({icon: IconPenderita});
+  }
+  point_pasien_id_{{ $d->id }}.addTo(map);
+
+  //WKT POPUP ON CLICK
+  point_pasien_id_{{ $d->id }}.on('click', function (e) { 
+    var pop = L.popup();
+    pop.setLatLng(e.latlng);
+    pop.setContent("Jenis = {{$d->jenis}}");
+    map.openPopup(pop);
+  });
 @endforeach
 
   //GEOJSON INDONESIA_KAB
