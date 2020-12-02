@@ -42,7 +42,7 @@ DATA COVID-19
   </div>
 
 <script type="text/javascript">
-//                        view awal (    center view     ) zoom level(makin kecil makin jauh)
+//view awal (    center view     ) zoom level(makin kecil makin jauh)
 var map=L.map('rumahpeta').setView([-1.303833, 117.859810], 5);
 
 //membuat layer dasar (base layer), linknya sudah paten
@@ -52,7 +52,6 @@ var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z=
 var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']});
 //add to div rumah peta  
 osm.addTo(map);
-// googleStreets.addTo(map);
 
 //pengaturan visibility dan choose option
 var baseMaps = {

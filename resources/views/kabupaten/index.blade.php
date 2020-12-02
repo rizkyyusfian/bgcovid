@@ -34,7 +34,7 @@ KABUPATEN
   </div>
 
 <script type="text/javascript">
-//                        view awal (    center view     ) zoom level(makin kecil makin jauh)
+//view awal (    center view     ) zoom level(makin kecil makin jauh)
 var map=L.map('rumahpeta').setView([-1.303833, 117.859810], 5);
 
 //membuat layer dasar (base layer), linknya sudah paten
@@ -59,24 +59,20 @@ var baseMaps = {
   kab_id_{{ $d->id }}.addTo(map);
 @endforeach
 
-  //GEOJSON INDONESIA_KAB
-  //fungsi untuk warna (belum dibuat)
-  function pemilih(feature) {
-    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
-  }
+//GEOJSON INDONESIA_KAB
+//fungsi untuk warna (belum dibuat)
+function pemilih(feature) {
+  return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
+}
 
-  //fungsi ppopup detail (masih salah)
-  function popupdetail(feature,layer) {
-    return layer.bindPopup('');
-  }
-
-
+//fungsi ppopup detail (masih salah)
+function popupdetail(feature,layer) {
+  return layer.bindPopup('TES');
+}
 
 //panggil geojson
 var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:pemilih,onEachFeature:popupdetail}).addTo(map);
 
-
 L.control.layers(baseMaps).addTo(map);
-
 </script>
 @endsection

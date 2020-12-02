@@ -35,10 +35,10 @@ KABUPATEN
   </div>
   <div class="col-md-4">
     <!-- isi form -->
-    <form role="form" method="POST" action="" enctype="multipart/form-data">
+    <form role="form" method="POST" action="{{ url('kabupaten') }}" enctype="multipart/form-data">
+      @csrf
       <div class="form-body">
-
-      <div class="form-group">
+        <div class="form-group">
           <label for="jenis">Jenis COVID-19</label>
           <select class="form-control" id="jenis" name="jenis">
             <option value="suspect">Suspect</option>
@@ -90,7 +90,6 @@ KABUPATEN
           <label for="geom">Geom</label>
           <textarea class="form-control " rows="3" id="geom" name="geom" placeholder="geom koordinat" readonly required></textarea>
         </div>
-
       </div>
       <div class="form-actions">
         <button type="submit"  onclick="simpan_geom();" class="btn btn-success">Submit</button>
@@ -100,7 +99,7 @@ KABUPATEN
 </div>
 
 <script type="text/javascript">
-  //                        view awal (    center view     ) zoom level(makin kecil makin jauh)
+  //view awal (    center view     ) zoom level(makin kecil makin jauh)
   var map=L.map('rumahpeta').setView([-1.303833, 117.859810], 5);
 
   //membuat layer dasar (base layer), linknya sudah paten
@@ -119,9 +118,10 @@ KABUPATEN
     "googleHybrid":googleHybrid
   };
 
+  //TAMPILKAN DATA POINT MASTER_KABUPATEN
   @foreach($data as $d)
     var kab_id_{{ $d->id }}= L.marker([ {{ $d->y }} ,{{ $d->x }}]).bindPopup("TESSSS");
-    // kab_id_{{ $d->id }}.addTo(map);
+    kab_id_{{ $d->id }}.addTo(map);
   @endforeach
 
   //DRAW CONTROL
@@ -187,6 +187,17 @@ KABUPATEN
     document.getElementById("geom").value = res;
     drawnItems.addLayer(layer);
   });
+
+  //GEOJSON INDONESIA_KAB
+  //fungsi untuk warna (belum dibuat)
+  function pemilih(feature) {
+    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
+  }
+
+  //fungsi ppopup detail (masih salah)
+  function popupdetail(feature,layer) {
+    return layer.bindPopup('TES');
+  }
 
   //panggil geojson
   var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}").addTo(map);
