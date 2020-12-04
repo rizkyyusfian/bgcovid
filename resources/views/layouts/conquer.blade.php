@@ -261,7 +261,7 @@ jQuery(document).ready(function() {
    Index.initKnowElements();
    Index.initDashboardDaterange();
    Tasks.initDashboardWidget();
-   $('#tes_1').DataTable();
+   $('#myTable').DataTable();
 });
 </script>
 
