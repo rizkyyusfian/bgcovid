@@ -163,17 +163,12 @@ DATA COVID-19
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems); 
   map.addControl(new L.Control.Draw({
-    edit: {
-        featureGroup: drawnItems,
-        poly: {
-        allowIntersection: false
-        }
-    },
     draw: {
-        polygon: {
-        allowIntersection: false,
-        showArea: true
-        }
+      polyline: false,
+      polygon: false,
+      circle: false,
+      rectangle: false,
+      marker: true
     }
   }));
 
@@ -189,35 +184,14 @@ DATA COVID-19
     var x = JSON.parse(shape_for_db);
     console.log(x);
 
+    //KOORDINAT MARKER (POINT)
     var res = "";
-    if (x['geometry']['type'] == "Point") {
-    $('#tipe').val('point'); //untuk mengganti combobox
-    res = "POINT("; 
-    res += x['geometry']['coordinates'][0] + " " + x['geometry']['coordinates'][1];
-    res += ")";
-    } else if (x['geometry']['type'] == "LineString") {
-    $('#tipe').val('linestring'); //untuk mengganti combobox
-    res = "LINESTRING(";
-    for ( var i = 0; i < x['geometry']['coordinates'].length; i++ ) {
-        if(i == 0) {
-        res += x['geometry']['coordinates'][i][0] + " " + x['geometry']['coordinates'][i][1];
-        } else {
-        res += "," + x['geometry']['coordinates'][i][0] + " " + x['geometry']['coordinates'][i][1];
-        }
-    }
-    res += ")";
-    } else if (x['geometry']['type'] == "Polygon") {
-    $('#tipe').val('polygon'); //untuk mengganti combobox
-    res = "POLYGON((";
-    for ( var i = 0; i < x['geometry']['coordinates'][0].length; i++ ) {
-        if(i == 0) {
-            res += x['geometry']['coordinates'][0][i][0] + " " + x['geometry']['coordinates'][0][i][1];
-        } else {
-            res += "," + x['geometry']['coordinates'][0][i][0] + " " + x['geometry']['coordinates'][0][i][1];
-        }
-    }
-    res += "," + x['geometry']['coordinates'][0][0][0] + " " + x['geometry']['coordinates'][0][0][1];
-    res += "))";
+    if (x['geometry']['type'] == "Point") 
+    {
+      $('#tipe').val('point'); //untuk mengganti combobox
+      res = "POINT("; 
+      res += x['geometry']['coordinates'][0] + " " + x['geometry']['coordinates'][1];
+      res += ")";
     }
     document.getElementById("geom").value = res;
     drawnItems.addLayer(layer);
