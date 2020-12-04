@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataCovid19;
+use App\Kabupaten;
 use Illuminate\Http\Request;
 use DB;
 

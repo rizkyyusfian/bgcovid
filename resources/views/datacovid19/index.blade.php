@@ -96,7 +96,7 @@ var IconPenderita = L.icon({
   point_pasien_id_{{ $d->id }}.on('click', function (e) { 
     var pop = L.popup();
     pop.setLatLng(e.latlng);
-    pop.setContent("Nama : {{$d->nama}}<br>Jenis : {{$d->jenis}}<br>No. KTP : {{$d->ktp}}<br>Alamat : {{$d->alamat}}<br>Keluhan : {{$d->keluhan_sakit}}<br>Riwayat Perjalanan : {{$d->riwayat_perjalanan}}<br><img src='{{asset('res/foto_covid/'.$d->foto)}}' height='200px' width='200px'><br>");
+    pop.setContent("Nama : {{$d->nama}}<br>Jenis : {{$d->jenis}}<br>No. KTP : {{$d->ktp}}<br>Alamat : {{$d->alamat}}<br>Keluhan : {{$d->keluhan_sakit}}<br>Riwayat Perjalanan : {{$d->riwayat_perjalanan}}<br>Kabupaten : {{$d->kabupaten->nama_kab}}<br><img src='{{asset('res/foto_covid/'.$d->foto)}}' height='200px' width='200px'><br>");
     map.openPopup(pop);
   });
 @endforeach
