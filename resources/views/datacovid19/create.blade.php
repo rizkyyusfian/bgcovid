@@ -154,10 +154,12 @@ DATA COVID-19
     point_pasien_id_{{ $d->id }}.on('click', function (e) { 
       var pop = L.popup();
       pop.setLatLng(e.latlng);
-      pop.setContent("Jenis = {{$d->jenis}}");
+      pop.setContent("Nama : {{$d->nama}}<br>Jenis : {{$d->jenis}}<br>No. KTP : {{$d->ktp}}<br>Alamat : {{$d->alamat}}<br>Keluhan : {{$d->keluhan_sakit}}<br>Riwayat Perjalanan : {{$d->riwayat_perjalanan}}<br><img src='{{asset('res/foto_covid/'.$d->foto)}}' height='200px' width='200px'><br>");
       map.openPopup(pop);
     });
   @endforeach
+
+
 
   //DRAW CONTROL
   var drawnItems = new L.FeatureGroup();
@@ -172,7 +174,6 @@ DATA COVID-19
     }
   }));
 
-  
   //AMBIL KOORDINAT DARI CONTROL DRAW
   map.on(L.Draw.Event.CREATED, function (e) {
     drawnItems.eachLayer(function(layer) { map.removeLayer(layer);});
@@ -201,7 +202,7 @@ DATA COVID-19
   //GEOJSON INDONESIA_KAB
   //fungsi untuk warna (belum dibuat)
   function pemilih(feature) {
-    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.2 };
+    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
   }
 
   //fungsi ppopup detail (masih salah)
