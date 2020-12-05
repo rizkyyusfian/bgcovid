@@ -97,6 +97,7 @@ DATA COVID-19
       </div>
       <div class="form-actions">
         <button type="submit"  onclick="simpan_geom();" class="btn btn-success">Submit</button>
+        <a href="{{ url('datacovid19') }}" class="btn btn-default">Cancel</a>
       </div>
     </form>
   </div>
@@ -209,10 +210,6 @@ DATA COVID-19
   //fungsi ppopup detail (masih salah)
   function popupdetail(feature,layer) {
     return layer.bindPopup("Kabupaten : "+feature.properties.NAMA_KAB);
-  }
-  
-  function koordinatkabupaten(feature,layer) {
-    return layer.bindPopup("Kabupaten : "+ feature.geometry.coordinates);
   }
 
   //panggil geojson

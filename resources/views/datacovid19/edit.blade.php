@@ -81,22 +81,24 @@ DATA COVID-19
       </div>
 
       <div class="form-group">
-        <label for="tipe">Tipe</label>
-        <select class="form-control" id="tipe" name="tipe">
-          <option value="point">Point</option>
-          <option value="linestring">Line String</option>
-          <option value="polygon">Polygon</option>
+        <label for="kabupaten">Kabupaten/Kota</label>
+        <select class="form-control" id="kabupaten" name="kabupaten">
+          <option value="{{$data->id_kabupaten}}">{{$data->kabupaten->nama_kab}}</option>
+          @foreach($kab as $k)
+          <option value="{{ $k->id }}">{{ $k->nama_kab }}</option>
+          @endforeach
         </select>
       </div>
 
       <div class="form-group">
         <label for="geom">Geom</label>
-        <textarea class="form-control " rows="3" id="geom" name="geom" placeholder="geom koordinat" readonly required></textarea>
+        <textarea class="form-control " rows="3" id="geom" name="geom" readonly required>{{$data->geom}}</textarea>
       </div>
 
       </div>
       <div class="form-actions">
         <button type="submit"  onclick="simpan_geom();" class="btn btn-success">Submit</button>
+        <a href="{{ url('datacovid19') }}" class="btn btn-default">Cancel</a>
       </div>
     </form>
   </div>

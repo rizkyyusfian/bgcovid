@@ -52,7 +52,7 @@ class DataCovid19Controller extends Controller
         $data->id_kabupaten = $request->get('kabupaten');
         $data->geom = $request->get('geom');
 
-        //LOGO
+        //FOTO
         $file=$request->file('foto');
         $imgFolder = 'res/foto_covid/';
         $imgFile=time()."_".$file->getClientOriginalName();
@@ -98,7 +98,25 @@ class DataCovid19Controller extends Controller
      */
     public function update(Request $request, DataCovid19 $datacovid19)
     {
-        //
+         $datacovid19->jenis=$request->get('jenis');
+         $datacovid19->nama=$request->get('nama');
+         $datacovid19->ktp=$request->get('ktp');
+         $datacovid19->alamat=$request->get('alamat');
+         $datacovid19->keluhan_sakit=$request->get('keluhan');
+         $datacovid19->riwayat_perjalanan=$request->get('riwayat');
+         $datacovid19->id_kabupaten = $request->get('kabupaten');
+         $datacovid19->geom=$request->get('geom');
+ 
+         //FOTO
+         $file=$request->file('foto');
+         $imgFolder = 'res/foto_covid/';
+         $imgFile=time()."_".$file->getClientOriginalName();
+         $file->move($imgFolder,$imgFile);
+         $datacovid19->foto=$imgFile;
+ 
+         $datacovid19->save();
+ 
+         return redirect()->route('datacovid19.index')->with('status', 'Data Berhasil Di Ubah');
     }
 
     /**
