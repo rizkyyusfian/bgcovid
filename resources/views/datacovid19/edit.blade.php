@@ -43,6 +43,7 @@ DATA COVID-19
       <div class="form-group">
         <label for="jenis">Jenis COVID-19</label>
         <select class="form-control" id="jenis" name="jenis">
+          <option value="{{ $data->jenis }}">{{ $data->jenis }}</option>
           <option value="suspect">Suspect</option>
           <option value="penderita">Penderita</option>
         </select>
@@ -67,7 +68,7 @@ DATA COVID-19
         <label>Foto</label>
         <input type="file" value="" name="foto" class="form-control" id="foto" placeholder="input foto" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" required>
       </div>
-      <img id="output" src="" width="200px" height="200px">
+      <img id="output" src="{{asset('res/foto_covid/'.$data->foto)}}" width="200px" height="200px">
 
       <div class="form-group">
         <label for="keluhan">Keluhan Sakit</label>

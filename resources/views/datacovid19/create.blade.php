@@ -42,6 +42,7 @@ DATA COVID-19
       <div class="form-group">
           <label for="jenis">Jenis COVID-19</label>
           <select class="form-control" id="jenis" name="jenis">
+            <option value="">Choose :</option>
             <option value="suspect">Suspect</option>
             <option value="penderita">Penderita</option>
           </select>
@@ -79,11 +80,12 @@ DATA COVID-19
         </div>
 
         <div class="form-group">
-          <label for="tipe">Tipe</label>
-          <select class="form-control" id="tipe" name="tipe">
-            <option value="point">Point</option>
-            <option value="linestring">Line String</option>
-            <option value="polygon">Polygon</option>
+          <label for="kabupaten">Kabupaten/Kota</label>
+          <select class="form-control" id="kabupaten" name="kabupaten">
+            <option value="">Choose :</option>
+            @foreach($kab as $k)
+            <option value="{{ $k->id }}">{{ $k->nama_kab }}</option>
+            @endforeach
           </select>
         </div>
 
@@ -189,7 +191,6 @@ DATA COVID-19
     var res = "";
     if (x['geometry']['type'] == "Point") 
     {
-      $('#tipe').val('point'); //untuk mengganti combobox
       res = "POINT("; 
       res += x['geometry']['coordinates'][0] + " " + x['geometry']['coordinates'][1];
       res += ")";

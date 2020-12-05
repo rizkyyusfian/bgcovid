@@ -29,7 +29,8 @@ class DataCovid19Controller extends Controller
     {
         $this->authorize('modify-permission');
         $data=DataCovid19::all();
-        return view("datacovid19.create", compact('data'));
+        $kab=Kabupaten::all();
+        return view("datacovid19.create", compact('data', 'kab'));
     }
 
     /**
