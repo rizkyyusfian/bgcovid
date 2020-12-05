@@ -21,9 +21,7 @@ DATA COVID-19
 
     <div class="page-toolbar">
     @can('modify-permission')
-      <a href="{{ url('datacovid19/create') }}" class="btn btn-success btn-sm">Add</a>
-      <a href="" class="btn btn-info btn-sm">Edit (?)</a>
-      <a href="" class="btn btn-danger btn-sm">Delete (?)</a>
+      <a href="{{ url('datacovid19/create') }}" class="btn btn-success btn-sm">Add Data</a>
     @endcan
     </div>
 </div>
@@ -36,11 +34,56 @@ DATA COVID-19
   <div class="note note-danger">{{ session('error') }}</div>
 @endif
 
+<table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Jenis</th>
+        <th>Nama</th>
+        <th>Nomor KTP</th>
+        <th>Alamat</th>
+        <th>Keluhan Sakit</th>
+        <th>Riwayat Perjalanan</th>
+        <th>Lokasi Karantina</th>
+        <th>Foto</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    	@foreach($data as $d)
+      <tr>
+        <td>{{$d->id}}</td>
+        <td>{{ $d->jenis}}</td>
+        <td>{{$d->nama}}</td>
+        <td>{{$d->ktp}}</td>
+        <td>{{$d->alamat}}</td>
+        <td>{{$d->keluhan_sakit}}</td>
+        <td>{{$d->riwayat_perjalanan}}</td>
+        <td>{{$d->kabupaten->nama_kab}}</td>
+        <td>{{$d->foto}}</td>
+          @can('modify-permission')
+          <td><a href="" class="btn btn-xs btn-warning">Edit</a></td>
+          @endcan
+        <td>
+          @can('modify-permission')
+          <form role="form" method="POST" action="">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="Delete" class="btn btn-xs btn-danger" onclick="if(!confirm('are you sure to delete this record ?')) return false">
+          </form>
+          @endcan
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+
+
 DATA COVID-19
 <div id="rumahpeta" style="background-color: red; height: 720px;">
     ini adalah rumah peta
-  </div>
-
+</div>
 <script type="text/javascript">
 //view awal (    center view     ) zoom level(makin kecil makin jauh)
 var map=L.map('rumahpeta').setView([-1.303833, 117.859810], 5);
