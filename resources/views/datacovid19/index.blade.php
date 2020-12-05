@@ -63,9 +63,7 @@ DATA COVID-19
         <td>{{$d->kabupaten->nama_kab}}</td>
         <td>{{$d->foto}}</td>
         <td>
-          @can('modify-permission')
-          <a href="" class="btn btn-xs btn-warning">Edit</a>
-          @endcan
+          <a href="{{ url('datacovid19/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
           </td>
         <td>
           @can('modify-permission')

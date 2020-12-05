@@ -40,6 +40,7 @@ class DataCovid19Controller extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('modify-permission');
         $data = new DataCovid19();
         $data->jenis = $request->get('jenis');
         $data->nama = $request->get('name');
@@ -64,10 +65,10 @@ class DataCovid19Controller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\DataCovid19  $dataCovid19
+     * @param  \App\DataCovid19  $datacovid19
      * @return \Illuminate\Http\Response
      */
-    public function show(DataCovid19 $dataCovid19)
+    public function show(DataCovid19 $datacovid19)
     {
         //
     }
@@ -75,12 +76,13 @@ class DataCovid19Controller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DataCovid19  $dataCovid19
+     * @param  \App\DataCovid19  $datacovid19
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataCovid19 $dataCovid19)
+    public function edit(DataCovid19 $datacovid19)
     {
-        $data=$dataCovid19;
+        $this->authorize('modify-permission');
+        $data=$datacovid19;
         $kab=Kabupaten::all();
         return view('datacovid19.edit', compact('data', 'kab'));
     }
@@ -89,10 +91,10 @@ class DataCovid19Controller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DataCovid19  $dataCovid19
+     * @param  \App\DataCovid19  $datacovid19
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataCovid19 $dataCovid19)
+    public function update(Request $request, DataCovid19 $datacovid19)
     {
         //
     }
@@ -100,10 +102,10 @@ class DataCovid19Controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DataCovid19  $dataCovid19
+     * @param  \App\DataCovid19  $datacovid19
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DataCovid19 $dataCovid19)
+    public function destroy(DataCovid19 $datacovid19)
     {
         //
     }
