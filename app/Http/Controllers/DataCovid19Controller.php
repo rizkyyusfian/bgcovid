@@ -72,7 +72,7 @@ class DataCovid19Controller extends Controller
      */
     public function show(DataCovid19 $datacovid19)
     {
-        //
+        return view("datacovid19.show", ["data"=>$datacovid19]);
     }
 
     /**
@@ -127,6 +127,6 @@ class DataCovid19Controller extends Controller
      */
     public function destroy(DataCovid19 $datacovid19)
     {
-        //
+        
     }
 }

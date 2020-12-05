@@ -46,25 +46,40 @@ DATA COVID-19
         <th>Riwayat Perjalanan</th>
         <th>Lokasi Karantina</th>
         <th>Foto</th>
+        <th>Detail</th>
+        @can('modify-permission')
         <th>Edit</th>
         <th>Delete</th>
+        @endcan
       </tr>
     </thead>
     <tbody>
     	@foreach($data as $d)
       <tr>
         <td>{{$d->id}}</td>
-        <td>{{ $d->jenis}}</td>
+        <td>{{$d->jenis}}</td>
         <td>{{$d->nama}}</td>
         <td>{{$d->ktp}}</td>
         <td>{{$d->alamat}}</td>
         <td>{{$d->keluhan_sakit}}</td>
         <td>{{$d->riwayat_perjalanan}}</td>
         <td>{{$d->kabupaten->nama_kab}}</td>
-        <td>{{$d->foto}}</td>
+        <td><img src="{{asset('res/foto_covid/'.$d->foto)}}" height='100px' width='100px'/></td>
+        <td>
+          <a class='btn btn-info btn-xs' href="{{route('datacovid19.show',$d->id)}}" data-target="#show{{$d->id}}" data-toggle='modal'>Detail</a>        
+          <div class="modal fade" id="show{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+               <!-- put animated gif here -->
+               <img src="{{ asset('res/loading.gif') }}">
+              </div>
+            </div>
+          </div>
+        </td>
+        @can('modify-permission')
         <td>
           <a href="{{ url('datacovid19/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
-          </td>
+        </td>
         <td>
           @can('modify-permission')
           <form role="form" method="POST" action="">
@@ -74,6 +89,7 @@ DATA COVID-19
           </form>
           @endcan
         </td>
+        @endcan
       </tr>
       @endforeach
     </tbody>
