@@ -44,11 +44,12 @@ class DataCovid19Controller extends Controller
         $this->authorize('modify-permission');
         $data = new DataCovid19();
         $data->jenis = $request->get('jenis');
-        $data->nama = $request->get('name');
+        $data->nama = $request->get('nama');
         $data->ktp = $request->get('ktp');
         $data->alamat = $request->get('alamat');
         $data->keluhan_sakit = $request->get('keluhan');
         $data->riwayat_perjalanan = $request->get('riwayat');
+        $data->id_kabupaten = $request->get('kabupaten');
         $data->geom = $request->get('geom');
 
         //LOGO

@@ -146,7 +146,7 @@ var IconPenderita = L.icon({
 //GEOJSON INDONESIA_KAB
 //fungsi untuk warna (belum dibuat)
 function pemilih(feature) {
-  return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
+  return {weight:1, color:"black", fillColor:"red",fillOpacity:0.2 };
 }
 
 //fungsi ppopup detail (masih salah)

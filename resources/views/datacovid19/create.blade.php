@@ -49,8 +49,8 @@ DATA COVID-19
         </div>
 
         <div class="form-group">
-          <label for="name">Nama</label>
-          <input type="text" class="form-control" id='name' name='name' placeholder="isi nama" required>
+          <label for="nama">Nama</label>
+          <input type="text" class="form-control" id='nama' name='nama' placeholder="isi nama" required>
         </div>
 
         <div class="form-group">
@@ -203,12 +203,16 @@ DATA COVID-19
   //GEOJSON INDONESIA_KAB
   //fungsi untuk warna (belum dibuat)
   function pemilih(feature) {
-    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.5 };
+    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.2 };
   }
 
   //fungsi ppopup detail (masih salah)
   function popupdetail(feature,layer) {
     return layer.bindPopup("Kabupaten : "+feature.properties.NAMA_KAB);
+  }
+  
+  function koordinatkabupaten(feature,layer) {
+    return layer.bindPopup("Kabupaten : "+ feature.geometry.coordinates);
   }
 
   //panggil geojson

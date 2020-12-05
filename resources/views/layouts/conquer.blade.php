@@ -71,6 +71,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 
+<!-- POINT IN POLYGON -->
+<link rel="stylesheet" href="{{ asset('plugins_leaflet/pointinpolygon/wise-leaflet-pip.js') }}"/>
+<script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
+<script src="https://rawgit.com/hayeswise/Leaflet.PointInPolygon/master/wise-leaflet-pip.js"></script>
 <!-- END LEAFLET STYLE AND SCRIPT -->
 
 

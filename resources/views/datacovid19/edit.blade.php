@@ -50,8 +50,8 @@ DATA COVID-19
       </div>
 
       <div class="form-group">
-        <label for="name">Nama</label>
-        <input type="text" class="form-control" id='name' name='name' value="{{$data->nama}}" placeholder="isi nama" required>
+        <label for="nama">Nama</label>
+        <input type="text" class="form-control" id='nama' name='nama' value="{{$data->nama}}" placeholder="isi nama" required>
       </div>
 
       <div class="form-group">
