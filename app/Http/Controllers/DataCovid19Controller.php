@@ -80,7 +80,9 @@ class DataCovid19Controller extends Controller
      */
     public function edit(DataCovid19 $dataCovid19)
     {
-        //
+        $data=$dataCovid19;
+        $kab=Kabupaten::all();
+        return view('datacovid19.edit', compact('data', 'kab'));
     }
 
     /**

@@ -62,9 +62,11 @@ DATA COVID-19
         <td>{{$d->riwayat_perjalanan}}</td>
         <td>{{$d->kabupaten->nama_kab}}</td>
         <td>{{$d->foto}}</td>
+        <td>
           @can('modify-permission')
-          <td><a href="" class="btn btn-xs btn-warning">Edit</a></td>
+          <a href="" class="btn btn-xs btn-warning">Edit</a>
           @endcan
+          </td>
         <td>
           @can('modify-permission')
           <form role="form" method="POST" action="">
@@ -80,8 +82,7 @@ DATA COVID-19
   </table>
 
 
-DATA COVID-19
-<div id="rumahpeta" style="background-color: red; height: 720px;">
+<div id="rumahpeta" style="background-color: red; height: 720px; border: 1px solid black;">
     ini adalah rumah peta
 </div>
 <script type="text/javascript">
