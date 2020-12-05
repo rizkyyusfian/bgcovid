@@ -208,10 +208,7 @@ DATA COVID-19
 
   //fungsi ppopup detail (masih salah)
   function popupdetail(feature,layer) {
-    // @foreach($data as $d)
-    //   var namakab = {{ $d->nama_kab }};
-    // @endforeach
-    return layer.bindPopup("TES");
+    return layer.bindPopup(feature.properties.NAMA_KAB);
   }
 
   //panggil geojson
