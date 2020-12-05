@@ -98,6 +98,7 @@ class DataCovid19Controller extends Controller
      */
     public function update(Request $request, DataCovid19 $datacovid19)
     {
+        $this->authorize('modify-permission');
          $datacovid19->jenis=$request->get('jenis');
          $datacovid19->nama=$request->get('nama');
          $datacovid19->ktp=$request->get('ktp');
@@ -127,6 +128,13 @@ class DataCovid19Controller extends Controller
      */
     public function destroy(DataCovid19 $datacovid19)
     {
-        
+        $this->authorize('modify-permission');
+        try {
+            $datacovid19->delete();
+            return redirect()->route('datacovid19.index')->with('status', 'Data Berhasil Dihapus');
+        } catch (\PDOException $e) {
+            $msg = "Gagal Menghapus Data. Id Digunakan Sebagai Foreign Key";
+            return redirect()->route('datacovid19.index')->with('error', $msg);
+        }
     }
 }

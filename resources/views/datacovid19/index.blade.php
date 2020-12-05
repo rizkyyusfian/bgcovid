@@ -55,7 +55,7 @@ DATA COVID-19
     </thead>
     <tbody>
     	@foreach($data as $d)
-      <tr>
+      <tr id="tr_{{ $d->id }}">
         <td>{{$d->id}}</td>
         <td>{{$d->jenis}}</td>
         <td>{{$d->nama}}</td>
@@ -82,7 +82,7 @@ DATA COVID-19
         </td>
         <td>
           @can('modify-permission')
-          <form role="form" method="POST" action="">
+          <form role="form" method="POST" action="{{ url('datacovid19/'.$d->id) }}">
             @csrf
             @method('DELETE')
             <input type="submit" value="Delete" class="btn btn-xs btn-danger" onclick="if(!confirm('are you sure to delete this record ?')) return false">
