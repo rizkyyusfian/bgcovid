@@ -17,7 +17,14 @@ class DataCovid19Controller extends Controller
     public function index()
     {
         $data=DataCovid19::all();
-        return view("datacovid19.index", compact('data'));
+
+        $datajumlah=DB::table("master_covid19")
+            ->join("master_kabupaten", "master_covid19.id_kabupaten", "=", "master_kabupaten.id")
+            ->select("master_kabupaten.nama_kab",DB::raw("count(master_covid19.id_kabupaten) as jumlah"))
+            ->groupBy('master_covid19.id_kabupaten', 'master_kabupaten.nama_kab')
+            ->get();
+
+        return view("datacovid19.index", compact('data', 'datajumlah'));
     }
 
     /**
