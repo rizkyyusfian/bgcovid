@@ -137,6 +137,29 @@ DATA COVID-19
   });
 
   //TAMPILKAN DATA POINT MASTER_COVID19
+  var jenis = '{{$data->jenis}}';
+
+  //CREATE WKT POINT
+  var pasien_id_{{ $data->id }} = '{{ $data->geom }}';
+  var wkt = new Wkt.Wkt();
+  wkt.read(pasien_id_{{ $data->id }});
+
+  var point_pasien_id_{{ $data->id }}
+  if(jenis == 'suspect')
+  {
+    point_pasien_id_{{ $data->id }} = wkt.toObject({icon: IconSuspect});
+  } else if(jenis == 'penderita') {
+    point_pasien_id_{{ $data->id }} = wkt.toObject({icon: IconPenderita});
+  }
+  point_pasien_id_{{ $data->id }}.addTo(map);
+
+  //WKT POPUP ON CLICK
+  point_pasien_id_{{ $data->id }}.on('click', function (e) { 
+    var pop = L.popup();
+    pop.setLatLng(e.latlng);
+    pop.setContent("<div><div style='text-align:center; font-weight: bold; font-size: 16px;'>POINT ASLI<br>{{$data->nama}}<br><img src='{{asset('res/foto_covid/'.$data->foto)}}' height='150px' width='125px'></div><br><div><b>Informasi Tambahan</b><br><b>Jenis : </b>{{$data->jenis}}<br><b>No. KTP : </b>{{$data->ktp}}<br><b>Alamat : </b>{{$data->alamat}}<br><b>Keluhan Sakit : </b>{{$data->keluhan_sakit}}<br><b>Riwayat Perjalanan : </b>{{$data->riwayat_perjalanan}}<br><b>Kabupaten : </b>{{$data->kabupaten->nama_kab}}</div></div>");
+    map.openPopup(pop);
+  });
   
 
   //DRAW CONTROL
