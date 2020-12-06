@@ -162,22 +162,43 @@ var PointDataCovid19 = L.layerGroup([]);
   PointDataCovid19.addLayer(point_pasien_id_{{ $d->id }});
 @endforeach
 
-// PointDataCovid19.addTo(map); //TAMPILKAN LAYER GROUP DI MAP
+//PointDataCovid19.addTo(map); //TAMPILKAN LAYER GROUP DI MAP
 
 //GEOJSON INDONESIA_KAB
-//fungsi untuk warna (belum dibuat)
-function pemilih(feature) {
-  return {weight:1, color:"black", fillColor:"red",fillOpacity:0.2 };
+//fungsi untuk warna
+function warnagradasi(feature) {
+  @foreach($datajumlah as $j)
+  if('{{$j->nama_kab}}' == feature.properties.NAMA_KAB) {
+    if({{$j->jumlah}} == 0) {
+      return {weight:1, color:'black', fillColor:"green",fillOpacity:0.3 };
+    }
+    else if ({{$j->jumlah}} > 0 && {{$j->jumlah}} <=3) {
+      return {weight:1, color:'black', fillColor:"yellow",fillOpacity:0.3 };
+    } else if ({{$j->jumlah}} > 3) {
+      return {weight:1, color:'black', fillColor:"red",fillOpacity:0.3 };
+    }
+  }
+  @endforeach
+  else {
+    return {weight:1, color:'black', fillColor:"blue",fillOpacity:0.3 };
+  }
 }
 
-//fungsi ppopup detail (masih salah)
+//fungsi ppopup detail
 function popupdetail(feature,layer) {
-  return layer.bindPopup("Kabupaten : "+feature.properties.NAMA_KAB);
+  @foreach($datajumlah as $j)
+  if('{{$j->nama_kab}}' == feature.properties.NAMA_KAB) {
+    return layer.bindPopup("Kabupaten : "+ feature.properties.NAMA_KAB + "<br>Jumlah Pengidap: {{$j->jumlah}}");
+  }
+  @endforeach
+  else if ('{{$j->nama_kab}}' != feature.properties.NAMA_KAB) {
+    return layer.bindPopup("Kabupaten : "+ feature.properties.NAMA_KAB + "<br>Jumlah Pengidap: 0");
+  }
 }
 
 
 //panggil geojson
-var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:pemilih,onEachFeature:popupdetail}).addTo(map);
+var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:warnagradasi,onEachFeature:popupdetail}).addTo(map);
 
 var grup_layer = {
   "Point Lokasi COVID-19" : PointDataCovid19
