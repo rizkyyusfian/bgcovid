@@ -131,6 +131,7 @@ var IconPenderita = L.icon({
   iconAnchor: [15, 40],
 });
 
+var PointDataCovid19 = L.layerGroup([]);
 
 //TAMPILKAN DATA POINT MASTER_COVID19
 @foreach($data as $d)
@@ -148,7 +149,7 @@ var IconPenderita = L.icon({
   } else if(jenis == 'penderita') {
     point_pasien_id_{{ $d->id }} = wkt.toObject({icon: IconPenderita});
   }
-  point_pasien_id_{{ $d->id }}.addTo(map);
+  // point_pasien_id_{{ $d->id }}.addTo(map);
 
   //WKT POPUP ON CLICK
   point_pasien_id_{{ $d->id }}.on('click', function (e) { 
@@ -157,7 +158,11 @@ var IconPenderita = L.icon({
     pop.setContent("<div><div style='text-align:center; font-weight: bold; font-size: 16px;'>{{$d->nama}}<br><img src='{{asset('res/foto_covid/'.$d->foto)}}' height='150px' width='125px'></div><br><div><b>Informasi Tambahan</b><br><b>Jenis : </b>{{$d->jenis}}<br><b>No. KTP : </b>{{$d->ktp}}<br><b>Alamat : </b>{{$d->alamat}}<br><b>Keluhan Sakit : </b>{{$d->keluhan_sakit}}<br><b>Riwayat Perjalanan : </b>{{$d->riwayat_perjalanan}}<br><b>Kabupaten : </b>{{$d->kabupaten->nama_kab}}</div></div>");
     map.openPopup(pop);
   });
+
+  PointDataCovid19.addLayer(point_pasien_id_{{ $d->id }});
 @endforeach
+
+// PointDataCovid19.addTo(map); //TAMPILKAN LAYER GROUP DI MAP
 
 //GEOJSON INDONESIA_KAB
 //fungsi untuk warna (belum dibuat)
@@ -174,6 +179,10 @@ function popupdetail(feature,layer) {
 //panggil geojson
 var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:pemilih,onEachFeature:popupdetail}).addTo(map);
 
-L.control.layers(baseMaps).addTo(map);
+var grup_layer = {
+  "Point Lokasi COVID-19" : PointDataCovid19
+}
+
+L.control.layers(baseMaps, grup_layer).addTo(map);
 </script>
 @endsection
