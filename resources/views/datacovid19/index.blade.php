@@ -34,6 +34,10 @@ DATA COVID-19
   <div class="note note-danger">{{ session('error') }}</div>
 @endif
 
+<div id="rumahpeta" style="background-color: red; height: 720px; border: 1px solid black;">
+    ini adalah rumah peta
+</div>
+
 <table class="table" id="myTable">
     <thead>
       <tr>
@@ -95,10 +99,6 @@ DATA COVID-19
     </tbody>
   </table>
 
-
-<div id="rumahpeta" style="background-color: red; height: 720px; border: 1px solid black;">
-    ini adalah rumah peta
-</div>
 <script type="text/javascript">
 //view awal (    center view     ) zoom level(makin kecil makin jauh)
 var map=L.map('rumahpeta').setView([-1.303833, 117.859810], 5);
