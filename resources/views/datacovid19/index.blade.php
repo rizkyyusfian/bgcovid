@@ -134,9 +134,9 @@ DATA COVID-19
   //STYLE BUFFER
   function styleBufferCovid(feature){
     return {
-      fillColor: "red",
+      fillColor: "purple",
       weight:0,
-      fillOpacity:0.8
+      fillOpacity:0.5
     };
   }
 
@@ -158,7 +158,8 @@ DATA COVID-19
   } else if(jenis == 'penderita') {
     point_pasien_id_{{ $d->id }} = wkt.toObject({icon: IconPenderita});
   }
-  // point_pasien_id_{{ $d->id }}.addTo(map);
+  @can('modify-permission')
+  point_pasien_id_{{ $d->id }}.addTo(map);
 
   //WKT POPUP ON CLICK
   point_pasien_id_{{ $d->id }}.on('click', function (e) { 
@@ -167,6 +168,7 @@ DATA COVID-19
     pop.setContent("<div><div style='text-align:center; font-weight: bold; font-size: 16px;'>{{$d->nama}}<br><img src='{{asset('res/foto_covid/'.$d->foto)}}' height='150px' width='125px'></div><br><div><b>Informasi Tambahan</b><br><b>Jenis : </b>{{$d->jenis}}<br><b>No. KTP : </b>{{$d->ktp}}<br><b>Alamat : </b>{{$d->alamat}}<br><b>Keluhan Sakit : </b>{{$d->keluhan_sakit}}<br><b>Riwayat Perjalanan : </b>{{$d->riwayat_perjalanan}}<br><b>Kabupaten : </b>{{$d->kabupaten->nama_kab}}</div></div>");
     map.openPopup(pop);
   });
+  @endcan
   PointDataCovid19.addLayer(point_pasien_id_{{ $d->id }}); //MASUKKAN KE DALAM LAYER GRUP
 
   //BUFFER
@@ -175,10 +177,12 @@ DATA COVID-19
   var bufferHasil_id_{{ $d->id }} = L.geoJson(buffered_id_{{ $d->id }}, {style: styleBufferCovid}).addTo(map);
   BufferDataCovid19.addLayer(bufferHasil_id_{{ $d->id }});
   @endforeach
-  
+
   //TAMPILKAN LAYER GROUP DI MAP
-  //PointDataCovid19.addTo(map); 
+  @can('modify-permission')
+  PointDataCovid19.addTo(map);
   BufferDataCovid19.addTo(map);
+  @endcan
 
   
   //GEOJSON INDONESIA_KAB
@@ -187,17 +191,17 @@ DATA COVID-19
     @foreach($datajumlah as $j)
     if('{{$j->nama_kab}}' == feature.properties.NAMA_KAB) {
       if({{$j->jumlah}} == 0) {
-        return {weight:1, color:'black', fillColor:"green",fillOpacity:0.3 };
+        return {weight:1, color:'black', fillColor:"green",fillOpacity:0.5 };
       }
       else if ({{$j->jumlah}} > 0 && {{$j->jumlah}} <=3) {
-        return {weight:1, color:'black', fillColor:"yellow",fillOpacity:0.3 };
+        return {weight:1, color:'black', fillColor:"yellow",fillOpacity:0.5 };
       } else if ({{$j->jumlah}} > 3) {
-        return {weight:1, color:'black', fillColor:"red",fillOpacity:0.3 };
+        return {weight:1, color:'black', fillColor:"red",fillOpacity:0.5 };
       }
     }
     @endforeach
     else {
-      return {weight:1, color:'black', fillColor:"green",fillOpacity:0.3 };
+      return {weight:1, color:'black', fillColor:"green",fillOpacity:0.5 };
     }
   }
 
@@ -220,6 +224,6 @@ DATA COVID-19
     "Buffer Lokasi Covid-19 2km" : BufferDataCovid19,
     "Polygon Warna Kabupaten" : kabupaten
   }
-  L.control.layers(baseMaps, grup_layer).addTo(map);
+  L.control.layers(baseMaps, @can('modify-permission')grup_layer @endcan).addTo(map);
 </script>
 @endsection
