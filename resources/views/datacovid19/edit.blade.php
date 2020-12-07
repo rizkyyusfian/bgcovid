@@ -66,7 +66,7 @@ DATA COVID-19
 
       <div class="form-group">
         <label>Foto</label>
-        <input type="file" value="" name="foto" class="form-control" id="foto" placeholder="input foto" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" required>
+        <input type="file" value="" name="foto" class="form-control" id="foto" placeholder="input foto" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
       </div>
       <img id="output" src="{{asset('res/foto_covid/'.$data->foto)}}" width="200px" height="200px">
 
