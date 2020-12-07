@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Des 2020 pada 11.38
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.3.1
+-- Generation Time: Dec 07, 2020 at 05:12 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -40,7 +40,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_covid19`
+-- Table structure for table `master_covid19`
 --
 
 CREATE TABLE `master_covid19` (
@@ -52,21 +52,35 @@ CREATE TABLE `master_covid19` (
   `foto` varchar(255) NOT NULL,
   `keluhan_sakit` varchar(255) NOT NULL,
   `riwayat_perjalanan` varchar(255) NOT NULL,
-  `geom` varchar(255) NOT NULL
+  `geom` varchar(255) NOT NULL,
+  `id_kabupaten` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_covid19`
+-- Dumping data for table `master_covid19`
 --
 
-INSERT INTO `master_covid19` (`id`, `jenis`, `nama`, `ktp`, `alamat`, `foto`, `keluhan_sakit`, `riwayat_perjalanan`, `geom`) VALUES
-(1, 'suspect', 'Udin', '160418119', 'Jl. Perak', '1606890269_blackpink.jpg', 'sakit tenggorokan', 'tidak ada', 'POINT(112.732087 -7.214951)'),
-(2, 'penderita', 'Hafur', '160418121', 'Perumahan Purimas', '1606903671_itzy.jpg', 'sesak napas', 'sidoarjo', 'POINT(112.783692 -7.336924)');
+INSERT INTO `master_covid19` (`id`, `jenis`, `nama`, `ktp`, `alamat`, `foto`, `keluhan_sakit`, `riwayat_perjalanan`, `geom`, `id_kabupaten`) VALUES
+(1, 'suspect', 'Udin', '160418119', 'Jl. Perak', '1607152616_udin.jpg', 'sakit tenggorokan', 'tidak ada', 'POINT(112.732087 -7.214951)', 218),
+(2, 'penderita', 'Hafur', '160418121', 'Perumahan Purimas', '1607152636_hafur.jpg', 'sesak napas', 'sidoarjo', 'POINT(112.783692 -7.336924)', 218),
+(3, 'penderita', 'Edo', '160418053', 'Jl. Hang Tuah', '1607152646_edo.jpg', 'demam tinggi', 'tidak ada', 'POINT(115.248758 -8.673094)', 193),
+(4, 'suspect', 'Yusfian', '160418112', 'Jl. Tamora', '1607313112_yusfian.jpg', 'tidak ada', 'tidak', 'POINT(131.346521 -0.929677)', 37),
+(5, 'penderita', 'aziz', '160418078', 'harapan indah', '1607313098_aziz.jpg', 'sakit pinggang', 'tidak ada', 'POINT(131.31737 -0.890715)', 37),
+(6, 'penderita', 'Usopp', '123456789', 'Jl. Cendrawasih', '1607313510_usopp.png', 'tidak ada', 'tidak ada', 'POINT(131.339443 -0.976363)', 37),
+(7, 'suspect', 'Monkey D. Luffy', '123456789', 'Jl. Maju Mundur', '1607313523_luffy.png', 'demam tinggi', 'tidak ada', 'POINT(110.374319 -7.820528)', 236),
+(8, 'penderita', 'Roronoa Zoro', '123456987', 'Jl. Maju', '1607313555_zoro.png', 'tidak ada', 'Wuhan', 'POINT(110.36329 -7.789235)', 236),
+(9, 'suspect', 'Nami', '123456987', 'Jl. Mundur', '1607313570_nami.png', 'tidak ada', 'tidak ada', 'POINT(110.38403 -7.791276)', 236),
+(10, 'penderita', 'Vinsmoke Sanji', '123987654', 'Baratie', '1607313593_sanji.png', 'tidak ada', 'tidak ada', 'POINT(110.35975 -7.819167)', 236),
+(11, 'suspect', 'Cyborg Franky', '123654879', 'Water Seven', '1607313687_franky.png', 'tidak ada', 'tidak ada', 'POINT(110.439788 -1.801461)', 175),
+(12, 'penderita', 'Tony Tony Chopper', '321456879', 'Drum Island', '1607313739_chopper.png', 'tidak ada', 'tidak ada', 'POINT(110.767213 -2.745531)', 175),
+(13, 'penderita', 'Brook', '213467897', 'Thriller Bark', '1607313789_brook.png', 'tidak ada', 'tidak ada', 'POINT(110.260007 -0.98872)', 175),
+(14, 'suspect', 'Jinbei', '987654312', 'Ryuugu Kingdom', '1607313880_jinbei.png', 'tidak ada', 'tidak ada', 'POINT(132.986869 -1.933227)', 35),
+(15, 'suspect', 'Nico Robin', '546789213', 'Ohara', '1607313942_robin.png', 'tidak ada', 'tidak ada', 'POINT(110.919665 -1.076597)', 175);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `master_kabupaten`
+-- Table structure for table `master_kabupaten`
 --
 
 CREATE TABLE `master_kabupaten` (
@@ -80,7 +94,7 @@ CREATE TABLE `master_kabupaten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `master_kabupaten`
+-- Dumping data for table `master_kabupaten`
 --
 
 INSERT INTO `master_kabupaten` (`id`, `kode_prop`, `nama_prop`, `kode_kab`, `nama_kab`, `y`, `x`) VALUES
@@ -528,7 +542,7 @@ INSERT INTO `master_kabupaten` (`id`, `kode_prop`, `nama_prop`, `kode_kab`, `nam
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -538,7 +552,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -549,7 +563,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -561,7 +575,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -577,7 +591,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
@@ -588,75 +602,86 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `master_covid19`
+-- Indexes for table `master_covid19`
 --
 ALTER TABLE `master_covid19`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_kabupaten` (`id_kabupaten`);
 
 --
--- Indeks untuk tabel `master_kabupaten`
+-- Indexes for table `master_kabupaten`
 --
 ALTER TABLE `master_kabupaten`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `master_covid19`
+-- AUTO_INCREMENT for table `master_covid19`
 --
 ALTER TABLE `master_covid19`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `master_kabupaten`
+-- AUTO_INCREMENT for table `master_kabupaten`
 --
 ALTER TABLE `master_kabupaten`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `master_covid19`
+--
+ALTER TABLE `master_covid19`
+  ADD CONSTRAINT `master_covid19_ibfk_1` FOREIGN KEY (`id_kabupaten`) REFERENCES `master_kabupaten` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
