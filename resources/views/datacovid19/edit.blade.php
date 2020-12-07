@@ -137,14 +137,13 @@ DATA COVID-19
   });
 
   //TAMPILKAN DATA POINT MASTER_COVID19
-  var jenis = '{{$data->jenis}}';
-
   //CREATE WKT POINT
   var pasien_id_{{ $data->id }} = '{{ $data->geom }}';
   var wkt = new Wkt.Wkt();
   wkt.read(pasien_id_{{ $data->id }});
 
   var point_pasien_id_{{ $data->id }}
+  var jenis = '{{$data->jenis}}';
   if(jenis == 'suspect')
   {
     point_pasien_id_{{ $data->id }} = wkt.toObject({icon: IconSuspect});
@@ -200,21 +199,43 @@ DATA COVID-19
     drawnItems.addLayer(layer);
   });
 
-
   //GEOJSON INDONESIA_KAB
-  //fungsi untuk warna (belum dibuat)
-  function pemilih(feature) {
-    return {weight:1, color:"black", fillColor:"red",fillOpacity:0.2 };
+  //fungsi untuk warna
+  function warnagradasi(feature) {
+    @foreach($datajumlah as $j)
+    if('{{$j->nama_kab}}' == feature.properties.NAMA_KAB) {
+      if({{$j->jumlah}} == 0) {
+        return {weight:1, color:'black', fillColor:"green",fillOpacity:0.5 };
+      }
+      else if ({{$j->jumlah}} > 0 && {{$j->jumlah}} <=3) {
+        return {weight:1, color:'black', fillColor:"yellow",fillOpacity:0.5 };
+      } else if ({{$j->jumlah}} > 3) {
+        return {weight:1, color:'black', fillColor:"red",fillOpacity:0.5 };
+      }
+    }
+    @endforeach
+    else {
+      return {weight:1, color:'black', fillColor:"green",fillOpacity:0.5 };
+    }
   }
 
-  //fungsi ppopup detail (masih salah)
+  //fungsi ppopup detail
   function popupdetail(feature,layer) {
-    return layer.bindPopup("TES");
+    @foreach($datajumlah as $j)
+    if('{{$j->nama_kab}}' == feature.properties.NAMA_KAB) {
+      return layer.bindPopup("Kabupaten : "+ feature.properties.NAMA_KAB + "<br>Jumlah Pengidap: {{$j->jumlah}}");
+    }
+    @endforeach
+    else if ('{{$j->nama_kab}}' != feature.properties.NAMA_KAB) {
+      return layer.bindPopup("Kabupaten : "+ feature.properties.NAMA_KAB + "<br>Jumlah Pengidap: 0");
+    }
   }
+  //PANGGIL GEOJSON
+  var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:warnagradasi,onEachFeature:popupdetail}).addTo(map);
 
-  //panggil geojson
-  var kabupaten = L.geoJson.ajax("{{ asset('res_leaflet/indonesia_kab.geojson') }}",{style:pemilih,onEachFeature:popupdetail}).addTo(map);
-
-  L.control.layers(baseMaps).addTo(map);
+  var grup_layer = {
+    "Polygon Warna Kabupaten" : kabupaten
+  }
+  L.control.layers(baseMaps, @can('modify-permission')grup_layer @endcan).addTo(map);
 </script>
 @endsection

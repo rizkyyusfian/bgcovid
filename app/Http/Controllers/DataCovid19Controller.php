@@ -37,7 +37,12 @@ class DataCovid19Controller extends Controller
         $this->authorize('modify-permission');
         $data=DataCovid19::all();
         $kab=Kabupaten::all();
-        return view("datacovid19.create", compact('data', 'kab'));
+        $datajumlah=DB::table("master_covid19")
+            ->join("master_kabupaten", "master_covid19.id_kabupaten", "=", "master_kabupaten.id")
+            ->select("master_kabupaten.nama_kab",DB::raw("count(master_covid19.id_kabupaten) as jumlah"))
+            ->groupBy('master_covid19.id_kabupaten', 'master_kabupaten.nama_kab')
+            ->get();
+        return view("datacovid19.create", compact('data', 'kab', 'datajumlah'));
     }
 
     /**
@@ -93,7 +98,12 @@ class DataCovid19Controller extends Controller
         $this->authorize('modify-permission');
         $data=$datacovid19;
         $kab=Kabupaten::all();
-        return view('datacovid19.edit', compact('data', 'kab'));
+        $datajumlah=DB::table("master_covid19")
+            ->join("master_kabupaten", "master_covid19.id_kabupaten", "=", "master_kabupaten.id")
+            ->select("master_kabupaten.nama_kab",DB::raw("count(master_covid19.id_kabupaten) as jumlah"))
+            ->groupBy('master_covid19.id_kabupaten', 'master_kabupaten.nama_kab')
+            ->get();
+        return view('datacovid19.edit', compact('data', 'kab', 'datajumlah'));
     }
 
     /**
