@@ -79,7 +79,14 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- TURF ANALISA SPASIAL -->
 <script src="{{ asset('plugins_leaflet/turf/turf.min.js') }}" type="text/javascript"></script>
 
+<!-- GEOCODER -->
+<link rel="stylesheet" href="{{ asset('plugins_leaflet/geocoder/Control.Geocoder.css') }}"/>
+<script src="{{ asset('plugins_leaflet/geocoder/Control.Geocoder.js') }}" type="text/javascript"></script>
+
+<!-- MINICHART -->
+
 <!-- END LEAFLET STYLE AND SCRIPT -->
+<script src="{{ asset('plugins_leaflet/minichart/leaflet.minichart.min.js') }}" type="text/javascript"></script>
 
 
 @yield('javascript')

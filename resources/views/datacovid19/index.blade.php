@@ -220,6 +220,9 @@ DATA COVID-19
     "Buffer Lokasi Covid-19 2km" : BufferDataCovid19,
     "Polygon Warna Kabupaten" : kabupaten
   }
+
+  L.Control.geocoder().addTo(map);
+
   L.control.layers(baseMaps, @can('modify-permission')grup_layer @endcan).addTo(map);
 </script>
 @endsection
