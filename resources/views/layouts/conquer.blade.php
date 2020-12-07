@@ -175,17 +175,13 @@ License: You must have a valid license purchased only from themeforest(the above
           </a>
           <ul class="sub-menu">
             <li>
-              <a href="/kabupaten">
-                <i class="fa fa-building"></i>
-                Kabupaten
-              </a>
-            </li>
-            <li>
               <a href="/datacovid19">
                 <i class="fa fa-bar-chart-o"></i>
                 DataCovid19
               </a>
             </li>
+          </ul>
+        </li>
       </ul>
       <!-- END SIDEBAR MENU -->
     </div>

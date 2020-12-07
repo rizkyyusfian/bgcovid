@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 //ROUTE CONTROLLER
-Route::resource('/kabupaten', 'KabupatenController');
+Route::resource('/kabupaten', 'KabupatenController'); //CONTROLLER KABUPATEN TIDAK JADI DIPAKAI
 
 Route::resource('/datacovid19', 'DataCovid19Controller');
 

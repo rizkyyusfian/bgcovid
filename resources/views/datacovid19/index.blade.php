@@ -81,19 +81,13 @@ DATA COVID-19
             </div>
           </div>
         </td>
-        @can('modify-permission')
+        <td><a href="{{ url('datacovid19/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a></td>
         <td>
-          <a href="{{ url('datacovid19/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
-        </td>
-        @endcan
-        <td>
-          @can('modify-permission')
           <form role="form" method="POST" action="{{ url('datacovid19/'.$d->id) }}">
             @csrf
             @method('DELETE')
             <input type="submit" value="Delete" class="btn btn-xs btn-danger" onclick="if(!confirm('are you sure to delete this record ?')) return false">
           </form>
-          @endcan
         </td>
       </tr>
       @endforeach
