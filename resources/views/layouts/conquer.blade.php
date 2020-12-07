@@ -75,6 +75,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <link rel="stylesheet" href="{{ asset('plugins_leaflet/pointinpolygon/wise-leaflet-pip.js') }}"/>
 <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
 <script src="https://rawgit.com/hayeswise/Leaflet.PointInPolygon/master/wise-leaflet-pip.js"></script>
+
+<!-- TURF ANALISA SPASIAL -->
+<script src="{{ asset('plugins_leaflet/turf/turf.min.js') }}" type="text/javascript"></script>
+
 <!-- END LEAFLET STYLE AND SCRIPT -->
 
 
