@@ -38,6 +38,7 @@ DATA COVID-19
     ini adalah rumah peta
 </div>
 
+@can('modify-permission')
 <table class="table" id="myTable">
     <thead>
       <tr>
@@ -84,6 +85,7 @@ DATA COVID-19
         <td>
           <a href="{{ url('datacovid19/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
         </td>
+        @endcan
         <td>
           @can('modify-permission')
           <form role="form" method="POST" action="{{ url('datacovid19/'.$d->id) }}">
@@ -93,11 +95,11 @@ DATA COVID-19
           </form>
           @endcan
         </td>
-        @endcan
       </tr>
       @endforeach
     </tbody>
   </table>
+  @endcan
 
 <script type="text/javascript">
   //view awal (    center view     ) zoom level(makin kecil makin jauh)

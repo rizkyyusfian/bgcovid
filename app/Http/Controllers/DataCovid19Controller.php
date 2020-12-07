@@ -127,11 +127,13 @@ class DataCovid19Controller extends Controller
  
          //FOTO
          $file=$request->file('foto');
-         $imgFolder = 'res/foto_covid/';
-         $imgFile=time()."_".$file->getClientOriginalName();
-         $file->move($imgFolder,$imgFile);
-         $datacovid19->foto=$imgFile;
- 
+         if( isset($file) )
+         {
+            $imgFolder = 'res/foto_covid/';
+            $imgFile=time()."_".$file->getClientOriginalName();
+            $file->move($imgFolder,$imgFile);
+            $datacovid19->foto=$imgFile;
+         }
          $datacovid19->save();
  
          return redirect()->route('datacovid19.index')->with('status', 'Data Berhasil Di Ubah');
