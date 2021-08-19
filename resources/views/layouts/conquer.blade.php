@@ -67,7 +67,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- Draw Control -->
 <link rel="stylesheet" href="{{ asset('plugins_leaflet/markercluster/MarkerCluster.css') }}"/>
 <link rel="stylesheet" href="{{ asset('plugins_leaflet/markercluster/MarkerCluster.Default.css') }}"/>
-<script src="plugins_leaflet/markercluster/leaflet.markercluster-src.js"></script>
+<script src="{{ asset('plugins_leaflet/markercluster/leaflet.markercluster-src.js') }}"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 
