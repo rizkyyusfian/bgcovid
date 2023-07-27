@@ -79,9 +79,15 @@
                 <div class="card-body">
                     <p>
                         <b>User 1</b><br>
-                        E-Mail  : yusfian@gmail.com<br>
-                        Password: yusfian1<br>
+                        E-Mail  : admin@gmail.com<br>
+                        Password: admin123<br>
                         Role    : admin
+                    </p>
+                    <p>
+                        <b>User 2</b><br>
+                        E-Mail  : umum@gmail.com<br>
+                        Password: umumumum<br>
+                        Role    : Masryarakat
                     </p>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 Template Name: Conquer - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
 Version: 2.0
 Author: KeenThemes
@@ -116,7 +116,7 @@ License: You must have a valid license purchased only from themeforest(the above
           @if(Auth::user())
             {{ Auth::user()->name }}
           @else
-            [Anda belum login]
+            <p>Anda Belum Login</p>
           @endif
         </span>
         <i class="fa fa-angle-down"></i>
@@ -260,7 +260,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('assets/scripts/tasks.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
-jQuery(document).ready(function() {    
+jQuery(document).ready(function() {
    App.init(); // initlayout and core plugins
    Index.init();
    Index.initJQVMAP(); // init index page's custom scripts

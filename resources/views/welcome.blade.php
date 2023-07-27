@@ -30,7 +30,7 @@ a:hover {
   	</div>
   </div>
   <div class="w3-display-bottommiddle w3-padding-large" style='text-align:center;'>
-    <h4>Made By<br>Muhammad Rizky Yusfian Yusuf 160418112 <br>Hafizh Furqon Purnomo 160418121</h4>
+    <h4>Made By<br>Muhammad Rizky Yusfian Yusuf</h4>
   </div>
 </div>
 

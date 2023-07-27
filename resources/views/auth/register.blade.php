@@ -29,8 +29,8 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Role</label>
 
                             <div class="col-md-6">
-                                <input type="radio" id="admin" name="roles" value="admin">
-                                <label for="owner">admin</label><br>
+                                {{-- <input type="radio" id="admin" name="roles" value="admin">
+                                <label for="owner">admin</label><br> --}}
                                 <input type="radio" id="masyarakat" name="roles" value="masyarakat">
                                 <label for="pegawai">masyarakat</label>
                             </div>
