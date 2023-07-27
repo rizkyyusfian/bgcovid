@@ -124,7 +124,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <ul class="dropdown-menu">
           <li>
             @if(Auth::user())
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
                 <input type="submit" class="btn btn-danger btn-xs btn-block" value="Logout">
               </form>
